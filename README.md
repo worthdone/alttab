@@ -46,13 +46,13 @@ sudo ./setup-entry.sh --backend-ip 206.189.74.192 --backend-port 9443
 
 ## Ссылки Telegram
 
-`setup-exit.sh` записывает в конфигурацию публичный адрес entry-хоста и выводит готовую `tg://`-ссылку. Получить обе полные ссылки из Docker-лога можно на exit-хосте:
+После настройки exit-хоста сгенерируйте обе полные ссылки напрямую из конфигурации:
 
 ```sh
-TG_LINK="$(docker logs telemt 2>&1 | grep -o 'tg://proxy?[^[:space:]]*' | tail -n 1)"
-HTTPS_LINK="$(printf '%s\n' "$TG_LINK" | sed 's|^tg://proxy?|https://t.me/proxy?|')"
-printf '%s\n%s\n' "$TG_LINK" "$HTTPS_LINK"
+sudo ./generate-links.sh
 ```
+
+Другой путь к конфигурации можно передать через `--config FILE`.
 
 Форматы ссылок:
 

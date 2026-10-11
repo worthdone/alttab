@@ -170,5 +170,3 @@ docker run -d \
     /telemt /app/config.toml >/dev/null
 
 printf 'Telemt is running on exit port %s.\n' "$BACKEND_PORT"
-printf 'Connection links:\n'
-docker logs "$CONTAINER_NAME" 2>&1 | grep 'tg://' || true
