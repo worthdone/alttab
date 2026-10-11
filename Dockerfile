@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 ARG TELEMT_REPOSITORY=telemt/telemt
-ARG TELEMT_VERSION=latest
+ARG TELEMT_VERSION=3.5.14
 
 # ==========================
 # Minimal Image
