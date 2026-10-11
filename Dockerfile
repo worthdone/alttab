@@ -8,7 +8,7 @@ ARG TELEMT_VERSION=latest
 # ==========================
 FROM debian:12-slim AS minimal
 
-ARG TARGETARCH
+ARG TARGETARCH=amd64
 ARG TELEMT_REPOSITORY
 ARG TELEMT_VERSION
 
@@ -55,15 +55,15 @@ RUN set -eux; \
     strip --strip-unneeded /telemt || true; \
     rm -f "/tmp/${ASSET}" "/tmp/${ASSET}.sha256" /tmp/telemt
 
-RUN --mount=type=bind,target=/tmp \
-    mkdir -p /app && \
-    if [ -f /tmp/config.toml ]; then \
-        cp /tmp/config.toml /app/config.toml; \
-    elif [ -f /tmp/config/config.toml ]; then \
-        cp /tmp/config/config.toml /app/config.toml; \
-    else \
-        echo "Config file not found" && exit 1; \
-    fi
+#RUN --mount=type=bind,target=/tmp \
+#    mkdir -p /app && \
+#    if [ -f /tmp/config.toml ]; then \
+#        cp /tmp/config.toml /app/config.toml; \
+#    elif [ -f /tmp/config/config.toml ]; then \
+#        cp /tmp/config/config.toml /app/config.toml; \
+#    else \
+#        echo "Config file not found" && exit 1; \
+#    fi
 
 # ==========================
 # Debug Image
